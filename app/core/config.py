@@ -1,0 +1,3 @@
+
+PROJECT_NAME = "LGD Scorer"
+PROJECT_VERSION = "1.0.0"

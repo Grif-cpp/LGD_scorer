@@ -1,0 +1,25 @@
+{% extends "shared/base.html" %}
+
+{% block title %} 
+  <title>Job Board</title>
+{% endblock %} 
+
+{% block content %} 
+  <div class="container">
+    <h1 class="display-4">LGD_Counter</h1>
+  </div>
+
+<label class="custom-file-upload">
+  <form method="post" action="/upload" enctype="multipart/form-data">
+    <input type="file" accept="text/csv">
+    <input type="submit" value="submit">
+
+  </form>
+</label>
+
+
+<div class="container">
+    <a href="link/to/your/download/file" download>Download link</a>
+  </div>
+
+{% endblock %} 
