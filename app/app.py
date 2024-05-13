@@ -30,6 +30,9 @@ def start_application():
 
 model = None
 app = start_application()
+app.mount("/static", StaticFiles(directory= "static"), name="static")
+
+
 
 # формат ответа от модели
 class ModelResponse(BaseModel):

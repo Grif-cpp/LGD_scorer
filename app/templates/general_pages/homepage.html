@@ -1,9 +1,5 @@
 {% extends "shared/base.html" %}
 
-{% block css %}
-<link rel="stylesheet" type="text/css"  href="x.css"/>
-{% endblock %}
-
 {% block title %} 
   <title>Job Board</title>
 {% endblock %}
@@ -18,12 +14,17 @@
     <h2 class="display-3"> Введите файл формата csv для построения скоринга</h2>
   </div>
 
-<label class="custom-file-upload">
-  <form method="post" action="/upload" enctype="multipart/form-data">
-    <input type="file" name = "file" accept="text/csv">
-    <button type="submit">Отправить файл
-    </button>
-  </form>
-</label>
+   <div class="small-container">
+      <form method="post" action="/upload" enctype="multipart/form-data">
+        <label class="custom-file-upload">
+          <input type="file" name = "file" accept="text/csv"> Выберите файл
+          </input>
+        </label>
 
-{% endblock %} 
+        <button type="submit">Отправить файл
+        </button>
+      </form>
+    </div>
+
+
+{% endblock %}
