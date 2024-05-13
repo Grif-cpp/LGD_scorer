@@ -50,7 +50,6 @@ def startup_event():
 async def upload_file(file: UploadFile = File(...)):
     contents = file.file.read() # Read the contents of the uploaded file
     data = BytesIO(contents) # Store the contents in a BytesIO object
-    #df = pd.read_csv(data,sep=',') # Convert BytesIO object to Pandas DataFrame
     score = model(data).pred
     data.close()  # Close the BytesIO object
     file.file.close()  # Close the uploaded file

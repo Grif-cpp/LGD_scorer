@@ -1,25 +1,29 @@
 {% extends "shared/base.html" %}
 
+{% block css %}
+<link rel="stylesheet" type="text/css"  href="x.css"/>
+{% endblock %}
+
 {% block title %} 
   <title>Job Board</title>
-{% endblock %} 
+{% endblock %}
 
-{% block content %} 
+
+{% block content %}
   <div class="container">
-    <h1 class="display-4">LGD_Counter</h1>
+    <h1 class="display-4">Инструмент для скоринга LGD</h1>
+  </div>
+
+  <div class="container">
+    <h2 class="display-3"> Введите файл формата csv для построения скоринга</h2>
   </div>
 
 <label class="custom-file-upload">
   <form method="post" action="/upload" enctype="multipart/form-data">
-    <input type="file" accept="text/csv">
-    <input type="submit" value="submit">
-
+    <input type="file" name = "file" accept="text/csv">
+    <button type="submit">Отправить файл
+    </button>
   </form>
 </label>
-
-
-<div class="container">
-    <a href="link/to/your/download/file" download>Download link</a>
-  </div>
 
 {% endblock %} 
