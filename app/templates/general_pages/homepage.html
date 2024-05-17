@@ -1,0 +1,28 @@
+{% extends "shared/base.html" %}
+
+{% block title %} 
+  <title>Job Board</title>
+{% endblock %}
+
+
+{% block content %}
+  <div class="container">
+    <h1 class="display-4">Инструмент для скоринга LGD</h1>
+  </div>
+
+  <div class="container">
+    <h2 class="display-3"> Введите файл формата csv для построения скоринга</h2>
+  </div>
+
+   <div class="small-container">
+      <form method="post" action="/upload" enctype="multipart/form-data">
+        <label class="custom-file-upload">
+          <input type="file" name = "file" accept="text/csv"> Выберите файл
+          </input>
+        </label>
+
+        <button type="submit">Отправить файл
+        </button>
+      </form>
+    </div>
+{% endblock %}

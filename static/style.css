@@ -1,0 +1,64 @@
+ @charset "UTF-8";
+
+body{
+    background-color:  #afcfaf;
+}
+h1{
+    text-align: center;
+}
+.container{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60%;
+    background-color:    #daecda;
+    box-shadow: 5px 5px 5px  #090a09;
+}
+.index{
+    min-height: 400px;
+}
+.card{
+    display: block;
+    background-color: white;
+    box-shadow: 5px 5px 5px #ccc;
+    max-width: 18rem;
+    max-height: 18rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+.card a{
+    text-decoration: none;
+    padding: 2px;
+    background-color: teal;
+    color: white;
+    font-size: 36px;
+}
+.card small{
+    margin-top: auto;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    display: inline-block;
+    padding: 1px 12px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f1fdf1;
+}
+
+.button_submit{
+  padding: 6px 12px;
+  background-color: #f1fdf1;
+}
+.small-container{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60%;
+    background-color: #afcfaf;
+}

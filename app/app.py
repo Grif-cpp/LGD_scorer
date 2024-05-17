@@ -1,39 +1,41 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, APIRouter
 from pydantic import BaseModel
-from fastapi.responses import FileResponse
-from ml.model import load_model
-import pandas as pd
-from fastapi import Body
 from io import StringIO, BytesIO
-import os
 from fastapi.responses import StreamingResponse
 import io
 
-model = None
-app = FastAPI()
+import pathlib
+from fastapi import FastAPI, Request
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+from ml.model import *
 
-# формат ответа от модели
-class ModelResponse(BaseModel):
-    LGD_predictions: str
+from app.core.config import *
+from app.apis.general_pages.route_homepage import general_pages_router
 
-    class Config:
-        arbitrary_types_allowed = True
+BASE_DIR = pathlib.Path(__file__).parent
 
-
-
-# запуск функции при при запуске app
-@app.on_event("startup")
-def startup_event():
-    global model
-    model = load_model()
+def include_router(app):
+    app.include_router(general_pages_router)
 
 
-@app.post("/upload",response_class=StreamingResponse)
+def start_application():
+    app = FastAPI(title=PROJECT_NAME,version=PROJECT_VERSION)
+    include_router(app)
+    return app
+
+
+model_connector = ModelConnector()
+app = start_application()
+# добавление статических файлов
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+@app.post("/upload", response_class=StreamingResponse)
 async def upload_file(file: UploadFile = File(...)):
     contents = file.file.read() # Read the contents of the uploaded file
     data = BytesIO(contents) # Store the contents in a BytesIO object
-    #df = pd.read_csv(data,sep=',') # Convert BytesIO object to Pandas DataFrame
-    score = model(data).pred
+    score = model_connector.send_and_recieve_data(data).pred
     data.close()  # Close the BytesIO object
     file.file.close()  # Close the uploaded file
 
@@ -46,4 +48,5 @@ async def upload_file(file: UploadFile = File(...)):
         return response
 
     return export_data(score)
+
 
