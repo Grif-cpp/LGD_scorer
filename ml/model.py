@@ -1,34 +1,24 @@
 from dataclasses import dataclass
-from pathlib import Path
-
 import pandas as pd
-
 from ml.LGD_model import LGDModel
 
 
 @dataclass
 class LGDPrediction:
-    """Возвращает датафрейм айдшников и скоров"""
-
+    """Возвращает датафрейм со скорингом"""
     pred: str
-
     class Config:
         arbitrary_types_allowed = True
 
+class ModelConnector(object):
 
-def load_model():
-    """
+    def __init__(self):
+        self.model_ = LGDModel()
 
-    Returns:
-        model (function): функция, которая берет датафрейм и возвращает посчитаннный скор
-    """
-    model_ = LGDModel()
 
-    def model(df: pd.DataFrame) -> LGDPrediction:
+    def send_and_recieve_data(self, df: pd.DataFrame) -> LGDPrediction:
 
-        pred_ = model_.make_prediction(df)
+        pred_ = self.model_.make_prediction(df)
         return LGDPrediction(
             pred=pred_
         )
-
-    return model

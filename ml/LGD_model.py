@@ -17,7 +17,6 @@ class LGDModel(object):
     def get_model_info(self):
         feature_names = self.model.feature_names
         feature_types = self.model.feature_types
-        #self.model.get_split_value_histogram()
         return feature_names, feature_types
 
     def make_prediction(self, data):
@@ -29,6 +28,6 @@ class LGDModel(object):
         df = df.astype(float)
 
         score = df
-        score['LGDscore'] = self.score(df)
+        score['LGDscore'] = self.score(df)/2.2
 
         return score
