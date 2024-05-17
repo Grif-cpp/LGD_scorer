@@ -25,9 +25,10 @@ class LGDModel(object):
         for col in df.columns:
             df[col] = df[col].str.replace(',','.')
 
-        df = df.astype(float)
+        feature_cols = self.get_model_info()[0]
+        df[feature_cols] = df[feature_cols].astype(float)
 
         score = df
-        score['LGDscore'] = self.score(df)/2.2
+        score['LGDscore'] = self.score(df[feature_cols])
 
         return score
