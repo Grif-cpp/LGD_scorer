@@ -15,9 +15,9 @@ class LGDModel(object):
         return self.model.predict(df)
 
     def get_model_info(self):
-        feature_names = self.model.feature_names
-        feature_types = self.model.feature_types
-        return feature_names, feature_types
+        feature_names = self.model.feature_names_in_
+        feature_importances = self.model.feature_importances_
+        return feature_names, feature_importances
 
     def make_prediction(self, data):
         df = pd.read_csv(data,sep=',')
@@ -29,6 +29,6 @@ class LGDModel(object):
         df[feature_cols] = df[feature_cols].astype(float)
 
         score = df
-        score['LGDscore'] = self.score(df[feature_cols])
+        score['LGDscore'] = self.score(df[feature_cols]) / 2.2
 
         return score
